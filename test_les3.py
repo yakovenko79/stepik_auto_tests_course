@@ -16,8 +16,14 @@ linx = ["https://stepik.org/lesson/236895/step/1",
         "https://stepik.org/lesson/236905/step/1"]
 
 
-def tim():
-    return str(math.log(int(time.time())))
+@pytest.fixture(scope="function")
+def browser():
+    print("\nstart browser for test..")
+    browser = webdriver.Chrome()
+    browser.implicitly_wait(10)
+    yield browser
+    print("\nquit browser..")
+    browser.quit()
 
 
 @pytest.mark.parametrize('links', linx)
@@ -26,21 +32,20 @@ class TestAuth():
     def test_auth(self, browser, links):
         link = links
         browser.get(link)
-
+        time.sleep(5)
         button_auth = browser.find_element(By.CSS_SELECTOR, ".navbar__auth_login")
         button_auth.click()
-
         browser.find_element(By.CSS_SELECTOR, "#id_login_email").send_keys("imresquer@gmail.com")
         browser.find_element(By.CSS_SELECTOR, "#id_login_password").send_keys("joy78963214")
-        time.sleep(3)
         browser.find_element(By.CSS_SELECTOR, "button.sign-form__btn").click()
+        time.sleep(5)
+        browser.find_element(By.CSS_SELECTOR, "textarea.textarea").send_keys(str(math.log(int(time.time()))))
+        time.sleep(5)
+        browser.find_element(By.CSS_SELECTOR, "button.submit-submission").click()
+        time.sleep(5)
+        answer = browser.find_element(By.CSS_SELECTOR, "p.smart-hints__hint").text
 
-        browser.find_element(By.CSS_SELECTOR, "textarea.textarea").send_keys(tim())
-        WebDriverWait(browser, 10).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "button.submit-submission"))).click()
-        answer = WebDriverWait(browser, 5).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, "smart-hints__hint"))).text
-        assert "Correct!" == answer, answer
+        assert answer == "Correct!", f"part of answer {answer}"
 
 
 if __name__ == "__main__":
