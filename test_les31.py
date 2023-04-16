@@ -22,8 +22,8 @@ class TestAut():
         button_auth = browser.find_element(By.CSS_SELECTOR, "nav a.navbar__auth_login")
         button_auth.click()
         browser.implicitly_wait(5)
-        browser.find_element(By.CSS_SELECTOR, "#id_login_email").send_keys("imresquer@gmail.com")
-        browser.find_element(By.CSS_SELECTOR, "#id_login_password").send_keys("joy78963214")
+        browser.find_element(By.CSS_SELECTOR, "#id_login_email").send_keys("om")
+        browser.find_element(By.CSS_SELECTOR, "#id_login_password").send_keys("")
         browser.implicitly_wait(5)
         browser.find_element(By.CSS_SELECTOR, "button.sign-form__btn").click()
 

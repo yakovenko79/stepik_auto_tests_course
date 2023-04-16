@@ -7,9 +7,9 @@ from selenium.webdriver.common.by import By
 def fill_form(link):
     browser = webdriver.Chrome()
     browser.get(link)
-    browser.find_element(By.CSS_SELECTOR, "input.first:required").send_keys("Ivan")
-    browser.find_element(By.CSS_SELECTOR, "input.second:required").send_keys("Ivanoff")
-    browser.find_element(By.CSS_SELECTOR, "input.third:required").send_keys("aaa@aaa.aa")
+    req_elements = browser.find_elements(By.CSS_SELECTOR, "input:required")
+    for element in req_elements:
+        element.send_keys("blablabla")
     browser.find_element(By.CSS_SELECTOR, "button.btn").click()
     time.sleep(1)
     return browser.find_element(By.TAG_NAME, "h1").text

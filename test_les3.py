@@ -27,16 +27,16 @@ def browser():
 
 
 @pytest.mark.parametrize('links', linx)
-class TestAuth():
+
 
     def test_auth(self, browser, links):
         link = links
         browser.get(link)
-        time.sleep(5)
+        time.sleep(10)
         button_auth = browser.find_element(By.CSS_SELECTOR, ".navbar__auth_login")
         button_auth.click()
-        browser.find_element(By.CSS_SELECTOR, "#id_login_email").send_keys("imresquer@gmail.com")
-        browser.find_element(By.CSS_SELECTOR, "#id_login_password").send_keys("joy78963214")
+        browser.find_element(By.CSS_SELECTOR, "#id_login_email").send_keys(".com")
+        browser.find_element(By.CSS_SELECTOR, "#id_login_password").send_keys("")
         browser.find_element(By.CSS_SELECTOR, "button.sign-form__btn").click()
         time.sleep(5)
         browser.find_element(By.CSS_SELECTOR, "textarea.textarea").send_keys(str(math.log(int(time.time()))))
