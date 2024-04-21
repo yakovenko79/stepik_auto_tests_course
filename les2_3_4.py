@@ -3,6 +3,7 @@ import math
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+"""docstings"""
 
 link = "http://suninjuly.github.io/alert_accept.html"
 browser = webdriver.Chrome()
