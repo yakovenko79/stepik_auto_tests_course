@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import math
-
+"""Scrolling the page"""
 
 browser = webdriver.Chrome()
 link = "https://SunInJuly.github.io/execute_script.html"
@@ -34,3 +34,5 @@ try:
 finally:
     time.sleep(10)
     browser.quit()
+
+
